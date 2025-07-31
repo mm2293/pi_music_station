@@ -86,7 +86,8 @@ async def get_spotify_player():
     return {"status": "placeholder", "player": None}
 
 @api_router.post("/spotify/play")
-async def play_spotify(track_uri: str):
+async def play_spotify(data: dict):
+    track_uri = data.get("track_uri")
     # Placeholder for Spotify play command
     await manager.broadcast({"type": "spotify_play", "track_uri": track_uri})
     return {"status": "playing", "track": track_uri}
