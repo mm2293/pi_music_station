@@ -176,8 +176,9 @@ async def text_to_speech_announcement(text: str):
 
 # Audio Control Routes
 @api_router.post("/audio/volume")
-async def set_volume(volume: int):
-    if volume < 0 or volume > 100:
+async def set_volume(data: dict):
+    volume = data.get("volume")
+    if volume is None or volume < 0 or volume > 100:
         return {"error": "Volume must be between 0 and 100"}
     
     await manager.broadcast({
