@@ -157,7 +157,11 @@ async def create_announcement(announcement: Announcement):
     return announcement
 
 @api_router.post("/announcements/text-to-speech")
-async def text_to_speech_announcement(text: str):
+async def text_to_speech_announcement(data: dict):
+    text = data.get("text")
+    if not text:
+        return {"error": "Text is required"}
+        
     announcement = Announcement(
         text=text,
         type="text-to-speech"
