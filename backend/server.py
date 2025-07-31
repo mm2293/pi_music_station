@@ -75,7 +75,8 @@ async def get_spotify_config():
     return SpotifyConfig()
 
 @api_router.post("/spotify/auth")
-async def spotify_auth(code: str):
+async def spotify_auth(data: dict):
+    code = data.get("code")
     # Placeholder for Spotify OAuth
     return {"status": "placeholder", "message": "Spotify auth will be implemented with real credentials"}
 
